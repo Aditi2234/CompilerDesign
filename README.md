@@ -49,7 +49,7 @@ error prone. CodeMorpher solves this problem by:
 - pip
 - flex (Lex)
 - bison (Yacc)
-- gcc
+
 
 ---
 
@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 3. Run the translator
 ```bash
-./converter.exe
+make
 ```
 
 4. Run app.py
@@ -80,16 +80,15 @@ python app.py
 ## ✅ Assumptions 💡
 - Input C program is syntactically correct and error free
 - No complex data structures like pointers or structs
-- Only syntax related errors are handled
 - No logical errors in input program
 
 ---
 
 ## 🔮 Future Enhancements
 - Add support for pointers and structures
-- Add semantic analysis and type checking using symbol table
 - Support arrays and string operations
 - Add a graphical user interface for easier translation
+- Generate optimized intermediate code
 - Generate more optimized and readable Python code
 
 ---
