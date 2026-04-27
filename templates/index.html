@@ -28,7 +28,7 @@
 
     <!-- MAIN GRID -->
     <div class="main">
-        <!-- INPUT PANEL -->
+
         <div class="card" id="input-card">
             <div class="card-header">
                 <h3>📝 C Source Code</h3>
@@ -41,7 +41,7 @@
                         placeholder="Write C code"
                         spellcheck="false">{{ code }}</textarea>
                 </div>
-                <!-- FILE INPUT (hidden) -->
+
                 <input type="file" id="fileInput" accept=".c,.txt" style="display: none;" onchange="loadFile(event)">
                 <!-- BUTTONS -->
                 <div class="btn-group">
@@ -54,11 +54,10 @@
                     <button type="button" class="btn btn-secondary" id="btn-open" onclick="document.getElementById('fileInput').click()">
                         <span class="btn-icon">📂</span> Open File
                     </button>
-
                 </div>
             </form>
         </div>
-        <!-- OUTPUT PANEL -->
+
         <div class="card" id="output-card">
             <div class="card-header">
                 <h3>📤 Output</h3>
@@ -67,13 +66,13 @@
                     <button class="btn-small" id="btn-download" onclick="downloadPython()">⬇ Download .py</button>
                 </div>
             </div>
-            <!-- TABS -->
+
             <div class="tabs" id="output-tabs">
                 <button class="tab active" id="tab-python" onclick="showTab(event, 'python')">🐍 Python</button>
                 <button class="tab" id="tab-tac" onclick="showTab(event, 'tac')">📊 3AC (TAC)</button>
 
             </div>
-            <!-- OUTPUT CONTENT -->
+
             <div id="python" class="output active">
                 <div class="code-box">
                     <pre id="python-output">{{ python_output }}</pre>
@@ -100,24 +99,24 @@
         </div>
     </div>
 </div>
-<!-- Hidden form for download -->
+
 <form method="POST" action="/download" id="download-form" style="display:none;">
     <input type="hidden" name="python_code" id="download-code">
 </form>
 <script>
-// Clear textarea
+
 function clearText() {
     document.getElementById('code-input').value = "";
     updateLineNumbers();
 }
-// TAB SWITCHING
+
 function showTab(event, tab) {
     document.querySelectorAll(".output").forEach(x => x.classList.remove("active"));
     document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
     document.getElementById(tab).classList.add("active");
     event.target.classList.add("active");
 }
-// FILE LOAD
+
 function loadFile(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -128,7 +127,7 @@ function loadFile(event) {
     };
     reader.readAsText(file);
 }
-// COPY currently visible output
+
 function copyShown() {
     const activeTab = document.querySelector('.output.active pre');
     if (activeTab) {
@@ -139,7 +138,7 @@ function copyShown() {
         });
     }
 }
-// DOWNLOAD Python code
+
 function downloadPython() {
     const code = document.getElementById('python-output').textContent;
     if (!code.trim()) {
@@ -150,7 +149,6 @@ function downloadPython() {
     document.getElementById('download-form').submit();
 }
 
-// LINE NUMBERS
 function updateLineNumbers() {
     const textarea = document.getElementById('code-input');
     const lineNums = document.getElementById('line-numbers');
@@ -161,7 +159,7 @@ function updateLineNumbers() {
     }
     lineNums.textContent = nums;
 }
-// Sync scroll between line numbers and textarea
+
 document.getElementById('code-input').addEventListener('scroll', function() {
     document.getElementById('line-numbers').scrollTop = this.scrollTop;
 });
@@ -176,10 +174,8 @@ document.getElementById('code-input').addEventListener('keydown', function(e) {
         updateLineNumbers();
     }
 });
-// Init line numbers
-updateLineNumbers();
-// Animate phases on load
 
+updateLineNumbers();
 </script>
 </body>
 </html>
