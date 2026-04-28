@@ -33,8 +33,6 @@ error prone. CodeMorpher solves this problem by:
 - if / else if / else conditions
 - while loop
 - for loop
-- Single line and multi line comments
-- Functions
 - printf and scanf
 - break / continue / return
 - Logical and relational operators
