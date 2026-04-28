@@ -6,18 +6,16 @@
 
 %}
 
-
 %%
 "//".*                          {  }
 "/*"([^*]|\*+[^*/])*\*+"/"      {  }
 "#"[^\n]*       {  }
 
-
-
 "int"      { return INT; }
 "float"   { return FLOAT; }
 "double"   { return DOUBLE; }
 "void"     { return VOID; }
+"char"     { return CHAR; }
 "main"     { return MAIN; }
 "return"   { return RETURN; }
 "printf"   { return PRINT; }
@@ -72,15 +70,14 @@
 [0-9]+\.[0-9]+   { yylval.str = strdup(yytext); return NUMBER; }
 
 
-
 [a-zA-Z_][a-zA-Z0-9_]* {
     yylval.str = strdup(yytext);
     return ID;
 }
 
-[ \t\n]+   ;   // ignore whitespace
+[ \t\n]+   ;   
 
-.          ;   // ignore unknown
+.          ;   
 %%
 
 int yywrap() {
