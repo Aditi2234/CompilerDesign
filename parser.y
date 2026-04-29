@@ -46,7 +46,7 @@ void process_program(Node* root) {
 
 %token <str> ID NUMBER STRING
 
-%token INT MAIN FLOAT DOUBLE VOID
+%token INT MAIN FLOAT DOUBLE VOID CHAR
 %token LBRACE RBRACE
 %token SEMI
 %token RETURN
@@ -204,6 +204,9 @@ simple_stmt:
     | DOUBLE decl_list {
         $$ = $2;
     }
+    | CHAR decl_list {
+        $$ = $2;
+    }
     | ID ASSIGN expr {
           $$ = create_node("=", create_leaf($1), $3);
       }
@@ -268,6 +271,7 @@ expr:
     | expr AND expr     { $$ = create_node("&&", $1, $3); }
     | expr OR expr      { $$ = create_node("||", $1, $3); }
     | NOT expr          { $$ = create_node("!", $2,NULL); }
+    | AND_SINGLE expr %prec NOT { $$ = create_node("ADDR", $2, NULL); }
     | expr AND_SINGLE expr {$$ = create_node("&", $1, $3);}
 
     | LPAREN expr RPAREN   { $$ = $2; }
