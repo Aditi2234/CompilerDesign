@@ -7,7 +7,6 @@ and Yacc tools of compiler design.
 It helps students understand how the same logic works in both
 C and Python by translating C code to Python while preserving
 the original functionality.
-
 ---
 
 ## ⚡ Project Description
